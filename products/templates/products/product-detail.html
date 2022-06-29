@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        <div class="col-lg-6">
+            <img src="{{ prod_photo.image.url }}" class="img-thumbnail" alt="...">
+            <form action="{% url 'cart_add' product.id %}" method="post">
+            Категория: {{ product.category }} <br>
+            Товар: {{ product.title }} <br>
+            Описание: {{ product.description }} <br>
+            Цена: {{ product.price }} <br>
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input type="submit" value="В корзину">
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
