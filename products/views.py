@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import ProductPhoto, Product
+from cart.forms import CartAddProductForm
 
 
 def home_page(request):
@@ -10,4 +11,11 @@ def home_page(request):
 def product_detail(request, slug):
     product = Product.objects.get(slug=slug)
     prod_photo = get_object_or_404(ProductPhoto, product=product.id)
+
+    cart_product_form = CartAddProductForm()
+    print(product.title)
     return render(request, 'products/product-detail.html', locals())
+
+
+
+

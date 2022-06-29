@@ -1,7 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
+
     <link rel="stylesheet" type="text/css" href="{% static "css/products/home_page.css" %}">
+                <div class="cart">
+                    {% with total_items=cart|length %}
+                    {% if cart|length > 0 %}
+                    В корзине:
+                    <a href="{% url 'cart_detail' %}">
+                    {{ total_items }} шт ,${{ cart.get_total_price }}
+                    </a>
+                    {% else %}
+                        Корзина пустая
+                    {% endif %}
+                    {% endwith %}
+                </div>
 {% endblock %}
 {% block content %}
     <div class="container">
@@ -19,6 +32,9 @@
                     Товар: {{ product.product.title }} <br>
                     Описание: {{ product.product.description }} <br>
                     Цена: {{ product.product.price }} <br>
+                </div>
+                <div>
+
                 </div>
             </div>
             <hr>
